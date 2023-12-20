@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery-이벤트 등록 제거</title>
+    <script src="./script/jquery-1.12.4.js"></script>
+    <style>
+    </style>
+</head>
+
+<body>
+    <h1>이벤트 등록 제거</h1>
+    <section>
+        <button class="btn1">버튼1</button>
+        <p>내용 1</p>
+        <button class="btn2">버튼2</button>
+        <p>내용 2</p>
+    </section>
+    <script>
+        // 단독 이벤트 등록
+        $('.btn1').click(function () {
+            $(this).next().text('hello') // 내가 클릭한 요소를  this라고 한다 내가 클릭한 요소의 이벤트가 일어난 요소의 다음을 hello라고 한다. 
+        })
+
+        // $('.btn2').on('mouseover focus', function () {
+        //     $(this).next().text('안녕하세요') // 마우스 오버 이벤트
+        // })
+
+        $('.btn2').on({
+            // 객체 하는것은
+            // id:'a',
+            // pho:123이렇게 적어야 한다
+            'mouseover focus': function () { // 이벤트 먼저 적고, 함수를 적고 객체는 :이걸로 적는다(~가 일어나면)
+                $(this).next().text('어서 오세요') // 마우스가 올라가면 어서오세요라고 하고  
+            },
+            'mouseleave blur': function () {
+                $(this).next().text('안녕히 가세요') // 마우스가 내려가면 안녕히 가세요라고 한다
+            }
+        }
+        )// 저렇게 적는 이유는 mouseover 뒤에 focus이런식으로 적어서 다중이벤트를 등록할 수 있게 하기 위함이다 , 만약 마우스로도 이벤트를 해야하고 포커스로도 이벤트를 등록 해야한다고 하면 on을 적는다.
+
+        // 강제 이벤트 발생
+        $('.btn1').click()
+        $('.btn2').trigger('mouseover')
+
+        // 이벤트 제거
+        $('.btn2').off('mouseleave')
+
+        // 로딩 이벤트
+        // load(), ready(), error()
+        // 마우스 이벤트
+        // click(), dbclick(), hover(), mouseover(), mouseleave(), mouseenter(), mouseout(), mouseup(), mousedown(), mousemove(), scroll()
+        // 포커스 이벤트
+        // focus(), blur(), focusin(), focusout(), change()
+        // 키보드 이벤트
+        // keypress(), keydown(), keyup()
+    </script>
+</body>
+
+</html>

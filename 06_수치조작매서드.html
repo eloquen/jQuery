@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery-수치 조작 메서드</title>
+    <script src="./script/jquery-1.12.4.js"></script>
+    <!-- 두번째로 우선순위가 있다 바디 안에 있는것이 첫번째 우선순위 헤드안에 잇는것이 두번째 우선순위 링크로 만들었을 때가 세번째 우선순위 -->
+    <style>  
+        .p1,
+        .p2 {
+            width: 100px;
+            height: 50px;
+            padding: 20px;
+            border: 10px solid red;
+            background-color: #ccc;
+        }
+
+        .wrap {
+            width: 300px;
+            height: 200px;
+            background-color: #ccc;
+            position: relative;
+        }
+
+        .box {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            left: 100px;
+            top: 50px;
+            background-color: red;
+        }
+
+        .box1 {
+            width: 100px;
+            height: 5000px;
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>수치 조작 메서드</h1>
+    <p class="p1">1</p>
+    <p class="p2">3</p>
+
+    <div class="wrap">
+        <div class="box"></div>
+    </div>
+
+    <p class="box1"></p>
+
+    <script>
+        // 요소의 넓이와 높이
+        // width(), height() // 요소의 넓이와 높이
+        // innerWidth(), innerHeight() // 여백을 포함한 넓이와 높이
+        // outerWidth(), outerHeight() // 여백과 선을 포함한 넓이와 높이
+        console.log($('.p1').width())
+        console.log($('.p1').innerWidth())
+        console.log($('.p1').outerWidth())
+
+        $('.p2').outerWidth(100).outerHeight(100)
+
+        // 요소의 위치
+        // offset() //문서를 기준으로 내가 선택한 요소가 문서에서 수평,수직으로 떨어져 있는 값을 반환 , 
+        // position() // 기준이 되는 요소에서의 위치값을 반환
+
+        console.log($('.box').offset().top)
+        console.log($('.box').position().top) //우리가 css로 잡은 값, 자기부모를 기준으로 아래로 50
+        console.log($('.box').position().left) //
+
+        // 위에 것들을 하는 이유는 스크롤바의 위치(내가 스크롤한 값을 알려고)를 알아볼려고 하는것이다 
+
+        // 스크롤바의 위치
+        $(window).scroll(function () {
+            console.log($(window).scrollTop())
+        }) //스크롤바의 이상이면 어떤것을 하고, 조건문을 적어서 활용을 할 수 있게 한다
+    </script>
+</body>
+
+</html>
